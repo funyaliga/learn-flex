@@ -1,0 +1,39 @@
+*{
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #333;
+    color: #fff;
+}
+.flex-container{
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    max-width: 140px * 5;
+    border: 1px solid rgba(255, 255, 255, .6);
+    border-radius: 4px;
+    .item{
+        width: 120px;
+        margin: 10px;
+        line-height: 120px;
+        text-align: center;
+        opacity: .9;
+        border-radius: 4px;
+        &:nth-child(1){
+            background: #2980B9;
+        }
+        &:nth-child(2){
+            background: #455D7A;
+        }
+        &:nth-child(3){
+            background: #F95959;
+        }
+        &:nth-child(4){
+            background: #46B7B9;
+        }
+        &:nth-child(5){
+            background: #2F9296;
+        }
+    }
+}
