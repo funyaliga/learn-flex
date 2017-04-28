@@ -8,6 +8,7 @@
         <div class="item">5</div>
     </div>
     <div class="radio flex-direction">
+        <Radio :options="f.flexDirection.options" @change="flexDirectionChange($event)"></Radio>
         <div v-for="item in f.flexDirection.options">
             {{ item }}
         </div>
@@ -16,8 +17,12 @@
 </template>
 
 <script>
+import Radio from './components/radio.vue';
 export default {
     name: 'app',
+    components: {
+        [Radio.name]: Radio,
+    },
     data () {
         return {
             f: {
@@ -25,9 +30,17 @@ export default {
                     selected: 'row',
                     options: ['row', 'row-reverse', 'column', 'column-reverse']
                 }
-            }
+            },
+            test: '测试',
         }
-    }
+    },
+    methods: {
+        flexDirectionChange(val) {
+            console.log(val)
+            // this.f.flexDirection.selected = val
+            // console.log(this.f.flexDirection)
+        },
+    },
 }
 </script>
 
