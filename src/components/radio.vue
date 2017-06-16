@@ -1,43 +1,39 @@
 <template>
     <div class="m-radio" @change="$emit('change', currentValue)">
-        <div class="radio-tt" v-text="title"></div>
-        <div v-for="option in options">
-            <label class="radio-label">
-                <span class="radio-label-r">
-                    <input
-                        class="radio-label-input"
-                        type="radio"
-                        v-model="currentValue"
-                        :disabled="option.disabled"
-                        :value="option.value || option"
-                    >
-                </span>
-                <span class="radio-label-t" v-text="option.label || option"></span>
-            </label>
-        </div>
+        <label v-for="option in options" class="radio-label">
+            <span class="radio-label-r">
+                <input
+                    class="radio-label-input"
+                    type="radio"
+                    v-model="currentValue"
+                    :disabled="option.disabled"
+                    :value="option.value || option"
+                >
+            </span>
+            <span class="radio-label-t" v-text="option.label || option"></span>
+        </label>
     </div>
 </template>
 
 <script>
 
 export default {
-    name: 'Radio',
+    name: 'c-radio',
     props: {
         title: String,
-        align: String,
         options: {
             type: Array,
             required: true
         },
-        value: String
+        defaultValue: String
     },
     data() {
         return {
-            currentValue: this.value
+            currentValue: this.defaultValue
         };
     },
     watch: {
-        value(val) {
+        defaultValue(val) {
             this.currentValue = val;
         },
         currentValue(val) {
