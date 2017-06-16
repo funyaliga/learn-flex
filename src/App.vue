@@ -1,10 +1,13 @@
 <template>
 <div id="app">
-    <div class="flex-container" :style="styleBox">
-        <div v-for="i in 5" class="item" :style="styleItem[i]"><p>{{ i }}</p></div>
+    <div class="m-view">
+        <div class="box" :style="styleBox">
+            <div v-for="i in 5" class="item" :style="styleItem[i]"><p>{{ i }}</p></div>
+        </div>
     </div>
+
     <div class="m-ctr">
-        <div v-for="(v, styleName) in f">
+        <div v-for="(v, styleName) in f" class="floor">
             <!-- radio -->
             <div v-if="v.type === 'radio'" :class="`z-${v.type}`">
                 <h3>{{v.title}}</h3>
@@ -17,6 +20,11 @@
             </div>
         </div>
     </div>
+
+    <div class="m-intro">
+
+    </div>
+
 </div>
 </template>
 
