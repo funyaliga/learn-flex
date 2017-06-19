@@ -1,15 +1,14 @@
 <template>
     <div class="m-radio" @change="$emit('change', currentValue)">
         <label v-for="option in options" class="radio-label">
-            <span class="radio-label-r">
-                <input
-                    class="radio-label-input"
-                    type="radio"
-                    v-model="currentValue"
-                    :disabled="option.disabled"
-                    :value="option.value || option"
-                >
-            </span>
+            <input
+                class="radio-label-input"
+                type="radio"
+                v-model="currentValue"
+                :disabled="option.disabled"
+                :value="option.value || option"
+            >
+            <span class="radio-label-check">
             <span class="radio-label-t" v-text="option.label || option"></span>
         </label>
     </div>
