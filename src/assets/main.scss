@@ -48,22 +48,14 @@ body{
         width: 100px;
         line-height: 40px;
         min-height: 40px;
-        // margin: 8px;
         text-align: center;
         opacity: .9;
-        // border-radius: 4px;
         align-items: center;
         p{
             width: 100%;
             padding: 0;
             margin: 0;
         }
-        // &:after{
-        //     content: '';
-        //     display: inline-block;
-        //     height: 100%;
-        //     vertical-align: middle;
-        // }
         &:nth-child(1){
             background: #584F84;
         }
@@ -109,7 +101,11 @@ body{
     .m-radio{
         .radio-label{
             position: relative;
+            display: inline-block;
             margin-right: 8px;
+            height: 22px;
+            line-height: 21px;
+            cursor: pointer;
         }
         input{
             position: absolute;
@@ -119,26 +115,39 @@ body{
             position: relative;
             display: inline-block;
             padding-left: 18px;
-            line-height: 16px;
-            &:before{
+        }
+        .radio-label-check{
+            position: absolute;
+            top: (22px - 14) / 2;
+            left: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 1px solid #acacac;
+            text-align: center;
+            font-size: 0;
+            line-height: 1;
+            &:before,
+            &:after{
                 content: '';
-                position: absolute;
-                top: 2px;
-                left: 0;
-                width: 15px;
-                height: 15px;
-                line-height: 14px;
-                font-size: 20px;
-                text-align: center;
+                display: inline-block;
+                vertical-align: middle;
+            }
+            &:before{
+                width: 8px;
+                height: 8px;
+                background: #3ea47c;
                 border-radius: 50%;
-                border: 1px solid #acacac;
+                opacity: 0;
+                transition: .3s;
+            }
+            &:after{
+                height: 100%;
             }
         }
-        input:checked + .radio-label-t{
+        input:checked + .radio-label-check{
             &:before{
-                content: '\2022';
-                color: #3ea47c;
-                border-color: #3ea47c;
+                opacity: 1;
             }
         }
     }

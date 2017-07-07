@@ -8,7 +8,7 @@
                 :disabled="option.disabled"
                 :value="option.value || option"
             >
-            <span class="radio-label-check">
+            <span class="radio-label-check"></span>
             <span class="radio-label-t" v-text="option.label || option"></span>
         </label>
     </div>

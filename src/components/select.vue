@@ -6,7 +6,7 @@
                 class="select-label-select"
                 v-model="selected"
             >
-                <option v-for="option in options" :value="option">{{option}}</option>
+                <option v-for="option in options" :key="option" :value="option">{{option}}</option>
             </select>
         </label>
     </div>

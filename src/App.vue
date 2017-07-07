@@ -2,12 +2,12 @@
 <div id="app">
     <div class="m-view">
         <div class="box" :style="styleBox">
-            <div v-for="i in 5" class="item" :style="styleItem[i]"><p>{{ i }}</p></div>
+            <div v-for="i in 5" :key="i" class="item" :style="styleItem[i]"><p>{{ i }}</p></div>
         </div>
     </div>
 
     <div class="m-ctr">
-        <div v-for="(v, styleName) in f" class="floor">
+        <div v-for="(v, styleName) in f" :key="v.title" class="floor">
             <!-- radio -->
             <div v-if="v.type === 'radio'" :class="`z-${v.type}`">
                 <h3>{{v.title}}</h3>
@@ -16,7 +16,7 @@
 
             <div v-else-if="v.type === 'child'" :class="`z-${v.type}`">
                 <h3>{{v.title}} <em v-if="v.subtitle">({{v.subtitle}})</em></h3>
-                <c-select v-for="i in 5"  :label="i" :options="v.options" :defaultValue="v.selected[i - 1]" @change="childChange($event, styleName, i)" /> 
+                <c-select v-for="i in 5" :key="`select-${i}`"  :label="i" :options="v.options" :defaultValue="v.selected[i - 1]" @change="childChange($event, styleName, i)" ></c-select>
             </div>
         </div>
     </div>
@@ -109,12 +109,35 @@ export default {
             itemsLen: {}, //元素长度
             styleBox: {}, // 盒子样式
             styleItem: {}, // 子元素样式
+            focus: '',
         }
+    },
+    created () {
+        const styleBox = {}
+        const styleItem = {}
+        for (const i in [...Array(5)]) {
+            styleItem[+i + 1] = {}
+        }
+        for (const key in this.f) {
+            if (this.f.hasOwnProperty(key)) {
+                const element = this.f[key];
+                if (element.type === 'radio') {
+                    styleBox[key] = element.selected
+                } else {
+                    for (const i in [...Array(5)]) {
+                        styleItem[+i + 1][key] = element.selected
+                    }
+                }
+            }
+        }
+        this.styleBox = styleBox
+        this.styleItem = styleItem
     },
     methods: {
         radioChange(val, styleName) {
             this.f[styleName].selected = val
             this.styleBox[styleName] = val
+            this.focus = styleName
         },
         childChange(val, styleName, i) {
             // 克隆一个object
@@ -126,6 +149,7 @@ export default {
 
             this.f[styleName].selected.splice(i - 1, 1, val)
             this.styleItem = styleItem
+            this.focus = styleName
         },
     },
 }
